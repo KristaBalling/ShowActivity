@@ -21,9 +21,12 @@ public class FirstActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 Intent intent = new Intent(FirstActivity.this, SecondActivity.class);
-                startActivity(intent);
 
                 //OR startActivity(new Intent(FirstActivity.this, SecondActivity.class));
+                intent.putExtra("Message", "Hello from First Activity!");
+                intent.putExtra("SecondMessage", "Hello Again!");
+                intent.putExtra("Value", 123);
+                startActivity(intent);
             }
         });
     }
