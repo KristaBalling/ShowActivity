@@ -1,11 +1,15 @@
 package com.theironyard.showactivity.showactivity;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 public class SecondActivity extends AppCompatActivity {
     private TextView showMessage;
+    private Button backButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -15,6 +19,7 @@ public class SecondActivity extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
 
         showMessage = (TextView) findViewById(R.id.messageTextView);
+        backButton = (Button) findViewById(R.id.backButtonID);
 
         //check
         if (extras != null) {
@@ -23,6 +28,18 @@ public class SecondActivity extends AppCompatActivity {
 
             showMessage.setText("Message is : " + message + " and : " + String.valueOf(myInt));
         }
+
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent returnIntent = getIntent();
+                returnIntent.putExtra("returnData", "from Second Activity");
+                setResult(RESULT_OK, returnIntent);
+                finish();
+            }
+        });
+
 
     }
 }
